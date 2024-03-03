@@ -1,17 +1,25 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import { ref, onMounted } from 'vue'
+
+const gaufres = ref([])
+
+onMounted(() => {
+  fetch('http://127.0.0.1:8080/gaufres')
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      gaufres.value = data
+    }).catch((err) => console.log(err));
+})
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>Ils sont là aujourd'hui!</h1>
+  <li v-for="gaufre in gaufres" :key="gaufre.id">
+    {{ gaufre.name }}
+  </li>
 </template>
 
 <style scoped>
