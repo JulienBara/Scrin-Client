@@ -2,7 +2,10 @@
 // import HelloWorld from './components/HelloWorld.vue'
 import { ref, onMounted } from 'vue'
 
-const gaufres = ref([])
+const gaufres = ref<{
+  id: string;
+  name: string;
+}[]>([])
 
 onMounted(() => {
   fetch(import.meta.env.VITE_BACKEND_URL+'/gaufres')
