@@ -5,7 +5,7 @@ import { ref, onMounted } from 'vue'
 const gaufres = ref([])
 
 onMounted(() => {
-  fetch('http://127.0.0.1:8080/gaufres')
+  fetch(import.meta.env.VITE_BACKEND_URL+'/gaufres')
     .then((response) => response.json())
     .then((data) => {
       console.log(data)
