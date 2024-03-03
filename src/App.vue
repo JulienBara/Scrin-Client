@@ -11,15 +11,14 @@ onMounted(() => {
   fetch(import.meta.env.VITE_BACKEND_URL+'/gaufres')
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       gaufres.value = data
-    }).catch((err) => console.log(err));
+    });
 })
 
 </script>
 
 <template>
-  <h1>Ils sont là aujourd'hui!</h1>
+  <h1>Ils sont là aujourd'hui !</h1>
   <li v-for="gaufre in gaufres" :key="gaufre.id">
     {{ gaufre.name }}
   </li>
